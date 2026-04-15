@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-roseblush: #D4838F;
+  --color-softcrimson: #B84A62;
+  --color-whatsapp: #25D366;
+  --color-pearl: #FAF9F6;
+  --color-charcoal: #2D2D2D;
+  --color-palerose: #EADCDD;
+}
+
+@layer base {
+  :root {
+    --background: #FAF9F6;
+    --foreground: #2D2D2D;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
