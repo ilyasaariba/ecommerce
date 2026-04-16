@@ -38,7 +38,25 @@ export default function ConversionForm({ price, oldPrice }: { price: number, old
       console.error(insertErr);
       setError(`خطأ: ${insertErr.message || insertErr.details || 'يرجى المحاولة مرة أخرى أو مراسلتنا عبر الواتساب'}`);
     } else {
-      console.log('[Snap Pixel] Fired PURCHASE event with lead conversion data.');
+      // Format Phone Number strictly to Snapchat Standards (212...)
+      let formattedPhone = formData.phone.trim();
+      if (formattedPhone.startsWith('0')) {
+        formattedPhone = '212' + formattedPhone.substring(1);
+      } else if (!formattedPhone.startsWith('212')) {
+        formattedPhone = '212' + formattedPhone;
+      }
+
+      // Fire the critical PURCHASE Pixel Event
+      if (typeof window !== 'undefined' && (window as any).snaptr) {
+        (window as any).snaptr('track', 'PURCHASE', {
+          price: price,
+          currency: 'MAD',
+          user_phone_number: formattedPhone,
+          firstname: formData.name,
+          geo_city: formData.city
+        });
+      }
+
       setSuccess(true);
       setFormData({ name: '', phone: '', city: '' });
     }

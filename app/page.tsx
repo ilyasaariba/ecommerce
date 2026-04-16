@@ -19,7 +19,7 @@ export default async function LandingPage() {
 
   return (
     <main className="max-w-md mx-auto min-h-screen bg-white relative shadow-2xl pb-24 overflow-x-hidden">
-      <SnapPixel />
+      <SnapPixel price={pageData.price} />
       
       {/* Announcement Bar */}
       <div className="bg-roseblush text-white text-center py-1.5 text-xs font-bold tracking-wide">
