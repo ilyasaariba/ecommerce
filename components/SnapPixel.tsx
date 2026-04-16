@@ -12,7 +12,7 @@ export default function SnapPixel({ price }: { price?: number }) {
       // 2. Fire VIEW_CONTENT if price is provided
       if (price) {
         (window as any).snaptr('track', 'VIEW_CONTENT', {
-          price: price,
+          price: parseFloat(price as any),
           currency: 'MAD'
         });
       }

@@ -49,7 +49,7 @@ export default function ConversionForm({ price, oldPrice }: { price: number, old
       // Fire the critical PURCHASE Pixel Event
       if (typeof window !== 'undefined' && (window as any).snaptr) {
         (window as any).snaptr('track', 'PURCHASE', {
-          price: price,
+          price: parseFloat(price as any),
           currency: 'MAD',
           user_phone_number: formattedPhone,
           firstname: formData.name,
