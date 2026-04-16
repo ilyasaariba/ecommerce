@@ -30,13 +30,13 @@ export default function ConversionForm({ price, oldPrice }: { price: number, old
         name: formData.name,
         phone_number: formData.phone,
         city: formData.city,
-        status: 'New'
+        status: 'new'
       }
     ]);
 
     if (insertErr) {
       console.error(insertErr);
-      setError('حدث خطأ في الشبكة. يرجى المحاولة مرة أخرى أو مراسلتنا عبر الواتساب.');
+      setError(`خطأ: ${insertErr.message || insertErr.details || 'يرجى المحاولة مرة أخرى أو مراسلتنا عبر الواتساب'}`);
     } else {
       console.log('[Snap Pixel] Fired PURCHASE event with lead conversion data.');
       setSuccess(true);
@@ -47,10 +47,10 @@ export default function ConversionForm({ price, oldPrice }: { price: number, old
 
   if (success) {
     return (
-      <div className="bg-whatsapp/10 border-2 border-whatsapp p-6 rounded-xl text-center shadow-lg">
-        <h3 className="text-xl font-bold text-whatsapp mb-2">تم استلام طلبك بنجاح! 🎉</h3>
-        <p className="text-charcoal text-sm">سنتصل بك قريباً لتأكيد الطلب. شكراً لثقتكم.</p>
-        <p className="text-whatsapp font-bold text-xs mt-4">الدفع يكون عند الاستلام فقط</p>
+      <div className="bg-whatsapp/10 border-2 border-whatsapp p-8 rounded-xl text-center shadow-lg transform transition-all duration-500 scale-100">
+        <h3 className="text-2xl font-bold text-whatsapp mb-3">شكراً لكِ! تم التوصل بطلبك بنجاح 🎉</h3>
+        <p className="text-charcoal text-base font-medium">فريقنا سيقوم بالاتصال بك في أقرب وقت لتأكيد طلبيتك.</p>
+        <p className="text-whatsapp font-bold text-sm mt-6 bg-white py-2 rounded-lg inline-block px-4">الدفع يكون عند الاستلام فقط 📦</p>
       </div>
     );
   }
