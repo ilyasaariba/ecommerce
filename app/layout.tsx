@@ -18,8 +18,8 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        <Script id="snap-pixel" strategy="afterInteractive">
-          {`
+        <script dangerouslySetInnerHTML={{
+          __html: `
             (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
             {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
             a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
@@ -28,8 +28,8 @@ export default function RootLayout({
             'https://sc-static.net/scevent.min.js');
 
             snaptr('init', '10c92a42-e8cf-439f-8ce7-c53f04b1d5a1');
-          `}
-        </Script>
+          `
+        }} />
       </head>
       <body className={`${cairo.className} bg-pearl text-charcoal antialiased scroll-smooth`}>
         {children}
