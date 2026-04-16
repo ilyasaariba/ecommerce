@@ -1,5 +1,7 @@
 'use client';
 
+import { ArrowLeft } from 'lucide-react';
+
 type Props = {
   mainImage: string;
   sideImages: string[];
@@ -17,9 +19,17 @@ export default function HeroSection({ mainImage, sideImages, title, price, oldPr
   };
 
   return (
-    <section className="bg-white">
+    <section className="bg-white relative">
+      {/* Swipe Indicator Badge */}
+      {images.length > 1 && (
+        <div className="absolute top-4 left-4 bg-black/40 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 backdrop-blur-sm z-10 animate-pulse pointer-events-none">
+          <ArrowLeft size={16} />
+          <span>اسحبي للصور</span>
+        </div>
+      )}
+
       {/* Mobile-optimized Horizontal Scrolling Image Gallery */}
-      <div className="w-full h-96 bg-pearl overflow-x-auto snap-x snap-mandatory flex scrollbar-hide">
+      <div className="w-full h-96 bg-pearl overflow-x-auto snap-x snap-mandatory flex scrollbar-hide relative">
         {images.length > 0 ? images.map((img, i) => (
            // eslint-disable-next-line @next/next/no-img-element
           <img key={i} src={img} alt="Product" className="w-full h-full object-cover snap-center flex-shrink-0" />
